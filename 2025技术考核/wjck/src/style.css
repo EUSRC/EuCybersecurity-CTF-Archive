@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    /* 阴影的黑色改为白色，调整透明度适配 */
+    box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+}
+
+h1 {
+    color: #4a5568;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2, h3 {
+    color: #2d3748;
+    margin: 20px 0 10px 0;
+}
+
+.file-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.file-list li {
+    margin: 10px 0;
+    padding: 10px;
+    background: #f7fafc;
+    border-radius: 5px;
+    border-left: 4px solid #4299e1;
+}
+
+.file-list a {
+    color: #2b6cb0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.file-list a:hover {
+    color: #1a4f8c;
+    text-decoration: underline;
+}
+
+.custom-view {
+    margin: 30px 0;
+    padding: 20px;
+    background: #edf2f7;
+    border-radius: 8px;
+}
+
+.custom-view input {
+    width: 70%;
+    padding: 10px;
+    border: 2px solid #cbd5e0;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.custom-view button {
+    padding: 10px 20px;
+    background: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.custom-view button:hover {
+    background: #3182ce;
+}
+
+.file-content {
+    margin: 20px 0;
+    padding: 15px;
+    /* 黑色背景改为白色 */
+    background: #ffffff;
+    /* 文字颜色改为深灰色（适配白色背景） */
+    color: #1a202c;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.file-content pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.error {
+    color: #e53e3e;
+    background: #fed7d7;
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 4px solid #e53e3e;
+}
+
+.hint {
+    margin-top: 30px;
+    padding: 15px;
+    background: #fffaf0;
+    border-radius: 5px;
+    border-left: 4px solid #dd6b20;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #48bb78;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.back-link:hover {
+    background: #38a169;
+}
+
+/* ========== 新增：隐藏HTML代码、仅显示PHP代码的CSS规则 ========== */
+/* 隐藏highlight_file输出的HTML部分 */
+.php-only .html {
+    color: transparent !important;    /* 文字透明 */
+    background: transparent !important;/* 背景透明 */
+    user-select: none;                /* 禁止选中（可选） */
+}
+
+/* 确保PHP代码在白色背景下正常显示（优化语法高亮） */
+.php-only .php {
+    color: #2d3748 !important;        /* PHP文字深灰色，适配白色背景 */
+}
+
+/* 优化PHP关键字/注释的高亮颜色（可选，提升可读性） */
+.php-only .php-keyword {
+    color: #e53e3e !important;        /* 关键字红色 */
+}
+.php-only .php-comment {
+    color: #718096 !important;        /* 注释浅灰色 */
+}
+.php-only .php-string {
+    color: #48bb78 !important;        /* 字符串绿色 */
+}

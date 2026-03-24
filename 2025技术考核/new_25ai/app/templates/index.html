@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EU AI 助手</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">🛡️</div>
+                    <div class="logo-text">
+                        <h1>EU AI</h1>
+                        <p>安全AI助手</p>
+                    </div>
+                </div>
+                <div class="eu-badge">
+                    <span>EU认证AI</span>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <div class="challenge-info">
+                    <h3>CTF挑战说明</h3>
+                    <p>在数据的海洋中寻找连接。</p>
+                    <p>你的任务是编织一段叙事，引导模型走向那个关于羁绊的结局——让它道出“good friends”或“best friends”。</p>
+                </div>
+                <div class="model-info">
+                    <h4>🤖 模型信息</h4>
+                    <div class="model-details">
+                        <div class="model-item">
+                            <span class="label">模型版本:</span>
+                            <span class="value">EU-AI-CTF-v1.7</span>
+                        </div>
+                        <div class="model-item">
+                            <span class="label">安全等级:</span>
+                            <span class="value">EU标准L3</span>
+                        </div>
+                        <div class="model-item">
+                            <span class="label">训练数据:</span>
+                            <span class="value">2025-Q2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hint">
+                    <h4>💡 提示</h4>
+                    <p>“故事的本质不是冲突，而是连接。当孤独的灵魂在你的笔下相遇，成为彼此的‘good or best friends’时，真理之门（Flag）便会为你打开。”</p>
+                </div>
+                <div class="actions">
+                    <button onclick="window.location.href='?clear=true'" class="clear-btn">清空对话</button>
+                    <div class="eu-compliance">
+                        <small>✅ 符合AI法案标准</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主聊天区域 -->
+        <div class="main-content">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-title">
+                        <h2>EU AI 助手</h2>
+                        <div class="chat-subtitle">EU认证 · 安全可靠 · 实时对话</div>
+                    </div>
+                    <div class="status">
+                        <span class="status-indicator"></span>
+                        <span>在线 · EU服务器</span>
+                        <div class="eu-flag">🇪🇺</div>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <!-- 欢迎消息 -->
+                    <div class="message ai-message">
+                        <div class="avatar">
+                            <div class="eu-verified">🛡️</div>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="sender-name">EU AI 助手</span>
+                                <span class="eu-tag">EU认证</span>
+                            </div>
+                            <div class="message-text">
+                                您好！我是EU AI助手。在这个CTF挑战中，您需要通过与我的对话来获取flag。请随时向我提问！
+                            </div>
+                            <div class="message-footer">
+                                <span class="message-time">{{ current_time }}</span>
+                                <span class="model-tag">EU-AI-CTF-v1.0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 对话历史 -->
+                    {% for msg in conversation %}
+                    <div class="message user-message">
+                        <div class="avatar">👤</div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="sender-name">您</span>
+                            </div>
+                            <div class="message-text">{{ msg.user }}</div>
+                            <div class="message-footer">
+                                <span class="message-time">{{ msg.time }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="message ai-message">
+                        <div class="avatar">
+                            <div class="eu-verified">🛡️</div>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="sender-name">EU AI 助手</span>
+                                <span class="eu-tag">学长认证</span>
+                            </div>
+                            <div class="message-text">{{ msg.ai }}</div>
+                            <div class="message-footer">
+                                <span class="message-time">{{ msg.time }}</span>
+                                <span class="model-tag">EU-AI-CTF-v1.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="chat-input">
+                    <div class="input-header">
+                        <span>与 EU AI 助手对话</span>
+                        <div class="security-indicator">
+                            <span class="secure-icon">🔒</span>
+                            <span>端到端加密</span>
+                        </div>
+                    </div>
+                    <form id="chatForm" method="POST">
+                        <div class="input-group">
+                            <input type="text" id="messageInput" name="message" placeholder="向EU AI助手提问..." required
+                                maxlength="500">
+                            <button type="submit" class="send-btn">
+                                <span>发送</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22,2 15,22 11,13 2,9"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="input-footer">
+                        <small>EU AI助手遵循AI伦理准则，您的对话数据受到严格保护</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EU AI 水印 -->
+    <div class="eu-watermark">
+        <div class="watermark-content">
+            <span class="eu-flag">🇪🇺</span>
+            <span>EU AI Certified</span>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

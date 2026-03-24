@@ -1,0 +1,25 @@
+# =================== 最终正确版 Dockerfile ===================
+FROM ctftraining/base_image_nginx_mysql_php_73
+
+WORKDIR /var/www/html
+
+COPY www/ /var/www/html/
+COPY flag.sh /flag.sh
+RUN apk add --no-cache curl
+
+RUN chown -R 203:203 /var/www/html/ \
+    && find /var/www/html/ -type d -exec chmod 755 {} + \
+    && find /var/www/html/ -type f -exec chmod 644 {} + \
+    && chmod +x /flag.sh # <-- 确保 flag.sh 可执行
+
+#RUN cp /var/www/html/defconf.txt /etc/nginx/nginx.conf \
+#    && rm -f /etc/nginx/conf.d/*.conf
+
+RUN rm -rf /var/cache/apk/* /tmp/*
+
+EXPOSE 80
+
+# 【关键】此处无 ENTRYPOINT 指令，以继承基础镜像的自定义入口点
+
+CMD ["nginx", "-g", "daemon off;"]
+# ===============================================================

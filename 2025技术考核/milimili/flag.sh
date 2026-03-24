@@ -1,0 +1,1 @@
+echo "$GZCTF_FLAG" > /flag

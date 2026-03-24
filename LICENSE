@@ -1,0 +1,29 @@
+# Creative Commons Attribution-NonCommercial 4.0 International Public License
+
+By exercising the Licensed Rights (defined below), You accept and agree to be bound by the terms and conditions of this Creative Commons Attribution-NonCommercial 4.0 International Public License ("Public License"). To the extent this Public License may be interpreted as a contract, You are granted the Licensed Rights in consideration of Your acceptance of these terms and conditions, and the Licensor grants You such rights in consideration of benefits the Licensor receives from making the Licensed Material available under these terms and conditions.
+
+## 1. Non-Commercial Limitation
+The Licensor (EuCybersecurity / EUSRC Studio) authorizes You to use the material for educational and research purposes only. "Non-Commercial" means not primarily intended for or directed towards commercial advantage or monetary compensation.
+
+-------------------------------------------------------------------
+
+## 【特别权利声明 / Special Rights Notice】
+
+本仓库（EuCybersecurity-CTF-Archive）及其包含的所有源代码、Dockerfile、题目附件及相关文档，均受以下条款约束：
+
+1. **禁止商用 (NC - Non-Commercial)**：
+   严禁任何盈利性机构、商业培训机构或个人将本仓库内的任何资源用于有偿教学、付费靶场平台、商业赛事或任何形式的盈利活动。
+
+2. **必须署名 (BY - Attribution)**：
+   若您在非营利性的公开演练、校园比赛或技术分享引用本仓库题目，必须在显眼位置标注：
+   "Challenge by EuCybersecurity (EUSRC) Studio"。
+
+3. **免责声明 (Disclaimer)**：
+   本仓库资源仅供合法的网络安全教学与研究使用。使用者在利用本仓库资源进行任何活动时产生的法律后果，由使用者本人承担，原作者不承担任何连带责任。
+
+4. **禁止重新授权**：
+   第三方平台不得在未取得 EUSRC 工作室书面授权的情况下，将本仓库内容重新封装并以闭源或收费形式发布。
+
+---
+Official License Link: http://creativecommons.org/licenses/by-nc/4.0/
+(c) 2024-2026 EuCybersecurity (EUSRC) Studio. All rights reserved.

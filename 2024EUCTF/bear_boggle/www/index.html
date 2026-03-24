@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>找到熊二</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        .image-container {
+            background-image: url("20191121182618825.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+        .text-overlay {
+            position: absolute;
+            top: 20px;
+            left: 450px;
+            color: white;
+            font-size: 32px;
+            font-family: Arial, sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .link-container {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            color: white;
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            opacity: 0; /* 隐藏链接 */
+            transition: opacity 0.5s; /* 平滑过渡效果 */
+        }
+        .link-container:hover {
+            opacity: 1; /* 鼠标悬停时显示链接 */
+        }
+        .audio-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <div class="text-overlay">
+            熊二正在偷吃蜂蜜，你能找到他吗？
+        </div>
+        <div class="link-container">
+            <a href="flag.php">查看熊二的蜂蜜</a>
+        </div>
+        <div class="audio-controls">
+            <audio controls>
+                <source src="video.wav" type="audio/mpeg">
+                您的浏览器不支持 audio 元素。
+            </audio>
+        </div>
+    </div>
+</body>
+</html>

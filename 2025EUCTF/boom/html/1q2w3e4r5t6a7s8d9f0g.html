@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>flag</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    img {
+      max-width: 80vw;
+      max-height: 80vh;
+      object-fit: contain;
+      animation: shakeZoom 0.5s infinite;
+    }
+
+    @keyframes shakeZoom {
+      0% { transform: scale(1) translate(0, 0) rotate(0deg); }
+      25% { transform: scale(1.1) translate(-5px, 5px) rotate(-3deg); }
+      50% { transform: scale(1.2) translate(5px, -5px) rotate(3deg); }
+      75% { transform: scale(1.1) translate(-5px, 5px) rotate(-3deg); }
+      100% { transform: scale(1) translate(0, 0) rotate(0deg); }
+    }
+  </style>
+  <script>
+    window.onload = () => {
+      const img = document.getElementById('main-img');
+
+      setTimeout(() => {
+        img.src = './222.png';
+
+        img.onload = () => {
+          setTimeout(() => {
+            window.close();
+          }, 180);
+        };
+      }, 180);
+    };
+  </script>
+</head>
+<body>
+  <img id="main-img" src="./111.png" alt="图像" />
+</body>
+</html>
+<!--
+/*                     _ooOoo_
+ *                    o8888888o
+ *                    88" . "88
+ *                    (| -_- |)
+ *                    O\  =  /O
+ *                 ____/`---'\____
+ *               .'  \\|     |//  `.
+ *              /  \\|||  :  |||//  \
+ *             /  _||||| -:- |||||-  \
+ *             |   | \\\  -  /// |   |
+ *             | \_|  ''\---/''  |   |
+ *     +-------------------------------------+
+ *     | flag{testflag} |
+ *     +-------------------------------------+
+ *       | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+ *       \  \ `-.   \_ __\ /__ _/   .-` /  /
+ *  ======`-.____`-.___\_____/___.-`____.-'======
+ *                     `=---='
+ */
+-->

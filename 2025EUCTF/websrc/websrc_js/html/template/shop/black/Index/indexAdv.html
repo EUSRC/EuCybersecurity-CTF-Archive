@@ -1,0 +1,42 @@
+<!--
+	创建人：王永杰
+	创建时间：2017年2月7日 12:05:24
+	功能描述： 首页导航栏、 菜单栏、、商品分类、轮播图（目前只有首页才拥有这个组件）
+-->
+<style>
+	.index_adv li{
+		width: 100%;
+	}
+	.index_adv li img{
+		width: 100%;
+	}
+</style>
+<ul class="index_adv">
+	
+</ul>
+<script type="text/javascript">
+	//轮播图
+	var ap_id=[ap_id];
+	var data=platformAdvLoad(ap_id);
+	var advHtml='';
+	var slideshtml='';
+	if(data !=null && data.length>0){
+
+		for(var i=0;i<data.length;i++){
+			if(data[i]['adv_image'] == ''){
+
+				if(i==0){
+					advHtml+='<li><a href="javascript:;" target="_blank"><img src="__TEMP__/{$style}/public/images/style_blue_banner.png" alt=""></a></li>';
+				}
+				
+			}else{
+				if(i==0){
+					advHtml+='<li><a href="'+data[i]['adv_url']+'" target="_blank"><img src="'+__IMG(data[i]['adv_image'])+'" alt=""></a></li>';
+				}else{
+					advHtml+='<li><a href="'+data[i]['adv_url']+'" target="_blank"><img src="'+__IMG(data[i]['adv_image'])+'" alt=""></a></li>';
+				}
+			}
+		}
+	}
+	$('.index_adv').html(advHtml);
+</script>

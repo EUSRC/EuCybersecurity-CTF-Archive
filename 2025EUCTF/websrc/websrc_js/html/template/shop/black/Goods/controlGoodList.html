@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="__STATIC__/font-awesome/css/font-awesome.min.css">
+<script src="__TEMP__/{$style}/public/js/goods/controlGoods.js"></script>
+<script src="__TEMP__/{$style}/public/js/ns_collections.js" type="text/javascript"></script>
+<!-- 地址选择 _start -->
+<script type="text/javascript" src="__TEMP__/{$style}/public/js/ns_select_region.js"></script>
+<input type="hidden" id="hidden_province" value="{$user_location.province}" />
+<input type="hidden" id="hidden_city" value="{$user_location.city}" />
+<div class="goods_conditions">
+	<ul>
+		{if condition="$category_id!=''"}
+		<div class="condition">
+			<li class="brand"><a href="javascript:;">选择品牌</a></li>
+			<li class="screen"><a href="javascript:;">筛选分类</a></li>
+			{include file='shop/black/Goods/controlGoodsCategoryConditions' /}
+		</div>
+		{/if}
+		<div class="sort">
+			<li><a href="">排序方式：</a></li>
+			<li><a href="{:__URL('SHOP_MAIN/goods/goodslist',$_parameter_not_order)}">综合排序</a></li>
+			<li>
+				{if condition = " $sort=='asc' "}
+				<a href="{:__URL('SHOP_MAIN/goods/goodslist?'.$url_parameter_not_order.'&order=ng.sales&sort=desc'.$attr_url)}">销量排序</a>
+				{else/}
+				<a href="{:__URL('SHOP_MAIN/goods/goodslist?'.$url_parameter_not_order.'&order=ng.sales&sort=asc'.$attr_url)}">销量排序</a>
+				{/if}
+			</li>
+			<li>
+				{if condition = " $sort=='asc' "}
+				<a href="{:__URL('SHOP_MAIN/goods/goodslist?'.$url_parameter_not_order.'&order=ng.price&sort=desc'.$attr_url)}">价格排序</a>
+				{else/}
+				<a href="{:__URL('SHOP_MAIN/goods/goodslist?'.$url_parameter_not_order.'&order=ng.price&sort=asc'.$attr_url)}">价格排序</a>
+				{/if}
+			</li>
+			<li>
+				{if condition = " $sort=='asc' "}
+				<a href="{:__URL('SHOP_MAIN/goods/goodslist?'.$url_parameter_not_order.'&order=ng.is_new&sort=desc'.$attr_url)}">新品排序</a>
+				{else/}
+				<a href="{:__URL('SHOP_MAIN/goods/goodslist?'.$url_parameter_not_order.'&order=ng.is_new&sort=asc'.$attr_url)}">新品排序</a>
+				{/if}
+			</li>
+		</div>
+	</ul>
+</div>
+<div class="goods_list">
+	{notempty name="goods_list['data']"}
+	{foreach name="goods_list['data']" item="goods" key="k"}
+	<div class="goods">
+		<div class="goods_img">
+			<a href="javascript:;"  onclick="collectionGoods({$goods.goods_id},'goods','{$goods.goods_name}',this,false)" class="collet">
+				{if condition="$goods.is_favorite>0"}
+					<i class="fa fa-heart" data-log-id="{$goods.is_favorite}"></i>
+				{else/}
+				<i class="fa fa-heart-o" data-log-id="{$goods.is_favorite}"></i>
+				{/if}
+			</a>
+			<a href="{:__URL('SHOP_MAIN/goods/goodsinfo','goodsid='.$goods['goods_id'])}" title="{$goods.goods_name}" target="_blank">
+				<img src="{:__IMG($goods.pic_cover_mid)}" alt="">
+			</a>
+			{if condition="$goods['stock'] neq '0'"}
+			<a href="javascript:ShowGoodsAttribute({$goods.goods_id},'{$goods.goods_name}',{$goods.pic_id},this,{if condition='$goods.max_buy==0' }{$goods.stock}{else/}{$goods.max_buy}{/if},{$goods.state});" class="add-cart">加入购物车</a>
+			{else /}
+			<a href="javascript:;" class="add-cart">加入购物车</a>
+			{/if}
+			{foreach name="goods['sku_list']" item="pro_skus" key="k"}
+			<input type="hidden" name="goods_sku{$goods.goods_id}" value="{$pro_skus.attr_value_items};" stock="{$pro_skus.stock}" {if condition = "$goods.promotion_info neq ''"} price="{$pro_skus.promote_price}" {else/} price="{$pro_skus.price}"{/if} skuid="{$pro_skus.sku_id}" skuname="{$pro_skus.sku_name}">
+			{/foreach}
+		</div>
+		<p class="goods_name">{$goods.goods_name}</p>
+		<p>【顶级版】</p>
+		<p>￥{$goods.promotion_price}</p>
+	</div>
+	{/foreach}
+	{else/}
+	<div class="tip-box" style="margin-top: 100px;">
+		<i class="tip-icon"></i>
+		<div class="tip-text">Sorry！没有找到您想要的商品……</div>
+	</div>
+	<style>
+		.scrollpic{
+			display: none;
+		}
+	</style>
+	{/notempty}
+</div>
+<!--分页-->
+<div class="js-show-page">
+	{include file='shop/black/controlCommonPage'/}
+</div>
+{include file='shop/black/Goods/controlPopUpGoodsSkuAttribute'/}

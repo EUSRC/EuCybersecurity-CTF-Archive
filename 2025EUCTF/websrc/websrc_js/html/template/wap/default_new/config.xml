@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<folder>default_new</folder>
+	<theme>清爽版</theme>
+	<preview>previews.png</preview>
+	<advice>轮播图片建议尺寸为：640*320像素</advice>
+	<use>1</use>
+</template>

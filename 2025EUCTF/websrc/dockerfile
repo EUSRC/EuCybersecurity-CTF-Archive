@@ -1,0 +1,10 @@
+FROM web_daishi:latest
+
+
+COPY flag.sh /flag.sh
+
+RUN chmod +x /flag.sh
+    
+EXPOSE 80
+
+CMD /flag.sh

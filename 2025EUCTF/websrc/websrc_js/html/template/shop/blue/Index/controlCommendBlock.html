@@ -1,0 +1,254 @@
+<!-- {if condition="count($recommend_block) >0"}
+<div class="w1210 index-sale">
+	<ul class="tabs-nav">
+		{foreach name="recommend_block" item="recommend" key="k"}
+		<li {if condition="$k eq 0" }class="tabs-selected"{/if}>
+			<i class="arrow"></i>
+			<h3 title="{$recommend.class_name}">{$recommend.class_name}</h3></li>
+		{/foreach}
+	</ul>
+	{foreach name="recommend_block" item="recommend_detail" key="k"}
+	{if condition="$k eq 0" }
+	<div class="tabs-panel sale-goods-list">
+	{else/}
+	<div class="tabs-panel sale-goods-list tabs-hide">
+	{/if}
+		<ul>
+		{foreach name="recommend_detail['goods_list']" item="goods_list"}
+			<li>
+				<dl>
+					<dt class="goods-name">
+						<a title="{$goods_list.goods_info.goods_name}" href="{:__URL('SHOP_MAIN/goods/goodsinfo','goodsid='.$goods_list['goods_info']['goods_id'])}" target="_blank">{$goods_list.goods_info.goods_name}</a>
+					</dt>
+					<dd class="goods-thumb">
+						<a title="{$goods_list.goods_info.goods_name}" href="{:__URL('SHOP_MAIN/goods/goodsinfo','goodsid='.$goods_list['goods_info']['goods_id'])}" target="_blank">
+							<img src="{:__IMG($goods_list['picture_info']['pic_cover_mid'])}" />
+						</a>
+					</dd>
+					<dd class="goods-price">
+						<em class="second-color" style="font-size:18px;">￥{$goods_list.goods_info.promotion_price}</em>
+					</dd>
+				</dl>
+			</li>
+		{/foreach}
+		</ul>
+	</div>
+	{/foreach}
+</div>
+</div>
+{/if} -->
+<style>
+.recommend-style{
+background-color:#FFF;
+margin-top:20px;
+}
+.recommend-style-nav{
+padding-top:10px;
+padding-bottom:10px;
+border-bottom:1px solid #eee;
+}
+.recommend-style-nav h2{
+font-weight:normal;
+border-left:5px  solid #0689e1;
+height:29px;
+line-height:29px;
+padding-left:10px;
+}
+
+.focus-img{
+width:100%;
+position: relative;
+	height:216px;
+	
+}
+.focus-img-con{
+position: relative;
+overflow:hidden;
+margin: 0 auto;
+height:216px;
+}
+.focus-img-con ul{
+	position:absolute;
+	top:0;
+	width:2420px;
+}
+.focus-img-con ul li{
+	float:left;
+	width:242px;
+	height:216px;
+	
+}
+.focus-img-con ul li{
+	border-right:1px solid #eee;
+}
+.focus-img-con ul li:last-child{ 
+	
+}
+.focus-img-con ul li>div>div:nth-child(1){
+	height:130px;
+	
+}
+.focus-img-con ul li>div>div:nth-child(1){
+	height:130px;
+	text-align:center;
+}
+.focus-img-con ul li>div>div:nth-child(1) img{
+	max-height:100%;
+	max-width:100%;
+}
+.focus-img-con ul li>div>div:nth-child(2){
+	overflow:hidden;
+}
+.goods-name-css span{
+	float:left;
+	text-align:left;
+	font-size:13px;
+	height: 32px;
+	margin-left:10px;
+	line-height:32px;
+/* 	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis; */
+	max-width:100px;
+	display: -webkit-box; /** 将对象作为伸缩盒子模型显示 **/
+    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    -webkit-line-clamp: 1; /** 显示的行数 **/
+    overflow: hidden;  /** 隐藏超出的内容 **/
+}
+.group-name-css{
+	float:left;
+}
+.group-name-css span{
+	display:inline-block;
+	margin-top:6px;
+	margin-bottom:6px;
+	padding:2px 5px;
+	background-color:red;
+	color:#FFF;
+	font-size:12px;
+		max-width:80px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	border-radius:3px;
+}
+.focus-img-con ul li>div>div:nth-child(3){
+	text-align:left;
+	padding: 5px 10px;
+	color:red;
+	font-size:15px;
+}
+.change-bnt{
+	/* height:216px;
+	width:53px; */
+	padding:5px 10px;
+	border:1px solid #eee;
+	background-color:#FFF;
+	position:absolute;
+	top:-40px;
+	text-align:center;
+	/* border-top:none;
+	border-bottom:none; */
+}
+.change-bnt img{
+	height:10px;
+	width:5px;
+}
+.prev-bnt{
+	right:32px;
+	border-right:none;
+	/* background:url(__STATIC__/lory/left.png); */
+}
+.next-bnt{
+	right:0;
+	/* background:url(__STATIC__/lory/right.png); */
+}
+.bnt-ico{
+	
+}
+.focus-img-con ul li>div{
+	width:90%;
+	margin:10px auto;
+}
+.tag-small-block{
+	position:absolute;
+	z-index:100;
+	width:60px !important;
+	height:60px;
+	line-height:60px; 
+	background:url(__STATIC__/images/tag_ico.png);
+	background-repeat:no-repeat;
+	background-size:94%;
+	top:-10px;
+	color:#FFF;
+	font-size:12px;
+}
+.tag-small-block span{
+	width:60px !important;
+	margin-top:-19px;
+	display:block;
+	transform:rotate(318deg);
+	-ms-transform:rotate318deg); /* IE 9 */
+	-webkit-transform:rotate(318deg); /* Safari and Chrome */
+	
+}
+</style>
+
+<script src="__STATIC__/lory/changeImg.js"></script>
+		
+		<script type="text/javascript">
+ 			$(function(){
+				$("#focus-img").changeImg({
+					'boxWidth':1210,
+					'changeLen':5,
+					'changeSpend':3000,
+					'autoChange':true,
+					'changeHandle':true
+				});
+				//$(".prev-bnt").append("<img class='bnt-ico'src='__STATIC__/lory/left.png'/>");
+				//$(".next-bnt").append("<img class='bnt-ico'src='__STATIC__/lory/right.png'/>");
+				$(".prev-bnt").hide();
+				$(".next-bnt").hide();
+			});   
+		</script>
+{if condition = "!empty($recommend_goods_list)"}
+<div class="w1210 recommend-style">
+	<div class="recommend-style-nav">
+		<h2>商品促销</h2>
+	</div>
+	<div>
+			<div class="focus-img" id="focus-img">
+			
+			<div class="focus-img-con" id="focus-img-con">
+				<ul>
+					{foreach $recommend_goods_list as $k=>$v}
+					<li style="position:relative;">
+						<div>
+						
+							<div>
+								<a href="{:__URL('SHOP_MAIN/goods/goodsinfo','goodsid='.$v['goods_id'])}" target="_blank"><img src="{:__IMG($v['pic_cover_mid'])}"/></a>
+							</div>
+							<div>
+								<div class="group-name-css">
+									<!-- <span>{$v['group_name']}</span> -->
+								</div>
+								<div class="goods-name-css">
+									<a href="{:__URL('SHOP_MAIN/goods/goodsinfo','goodsid='.$v['goods_id'])}" target="_blank"><span>{$v['goods_name']}</span></a>
+								</div>
+							</div>
+							<div>
+								¥{$v['price']}
+							</div>
+						</div>
+						<div class="tag-small-block"><span>{php}echo mb_substr($v['group_name'],0,3,'utf-8');{/php}</span></div>
+					</li>
+					{/foreach}
+					
+				</ul>
+			</div>
+		</div>
+	
+	</div>
+</div>
+
+{/if}

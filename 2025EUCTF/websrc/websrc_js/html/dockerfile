@@ -1,0 +1,22 @@
+FROM ctftraining/base_image_nginx_mysql_php_73
+
+# 安装GD扩展及其依赖
+RUN apk --no-cache add \
+    freetype-dev \
+    libjpeg-turbo-dev \
+    libpng-dev \
+    && docker-php-ext-install gd
+
+COPY nul /var/www/html
+COPY flag /
+# COPY db.sql /tmp/db.sql
+
+RUN sh -c 'mysqld_safe &' \
+    && sleep 5s \
+    && mysqladmin -uroot password 'root' \
+    && chmod -R 777 /var/www/html/ \
+    && rm -rf /tmp/* \
+    && rm -rf /etc/apk
+
+VOLUME ["/var/log/nginx"]
+ENTRYPOINT ["/usr/local/bin/docker-php-entrypoint"]

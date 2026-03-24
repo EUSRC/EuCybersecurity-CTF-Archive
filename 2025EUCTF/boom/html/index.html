@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>index</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #111, #222);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    button {
+      padding: 16px 32px;
+      font-size: 1.5rem;
+      color: white;
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 75, 43, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 24px rgba(255, 75, 43, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <button onclick="openImagePage()">🎌 打开 FLAG</button>
+
+  <script>
+    function openImagePage() {
+      window.open("1q2w3e4r5t6a7s8d9f0g.html", "_blank", "width=800,height=600");
+    }
+
+    // 禁用右键菜单
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+
+    // 禁用快捷键
+    document.addEventListener('keydown', function(e) {
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') || // Ctrl+Shift+I
+        (e.ctrlKey && e.key.toLowerCase() === 'u') ||              // Ctrl+U
+        (e.ctrlKey && e.key.toLowerCase() === 's')                 // Ctrl+S
+      ) {
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>

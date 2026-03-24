@@ -1,0 +1,1 @@
+FROM vulfocus/weblogic-cve_2020_2883:latest

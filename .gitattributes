@@ -1,0 +1,16 @@
+# 所有文本文件默认 LF，禁止自动转换
+* text=auto eol=lf
+
+# 明确指定脚本/代码文件的换行符（必加，避免脚本执行报错）
+*.sh text eol=lf
+*.py text eol=lf
+*.c text eol=lf
+*.h text eol=lf
+*.cpp text eol=lf
+*.md text eol=lf
+
+# 二进制文件不处理换行符
+*.png binary
+*.jpg binary
+*.zip binary
+*.so binary

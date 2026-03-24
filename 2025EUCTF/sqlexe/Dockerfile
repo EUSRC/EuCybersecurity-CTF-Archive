@@ -1,0 +1,15 @@
+FROM ctftraining/base_image_nginx_mysql_php_73
+
+COPY ./html /var/www/html
+COPY ./flag.sh /flag.sh
+
+RUN sh -c 'mysqld_safe &' \
+    && sleep 5s \
+    && mysqladmin -uroot password 'root' \
+    && mysql -uroot -proot -e "source /var/www/db.sql" \
+    && chmod -R 777 /var/www/html/ \
+    && rm -rf /tmp/* \
+    && rm -rf /etc/apk
+
+VOLUME ["/var/log/nginx"]
+ENTRYPOINT /usr/local/bin/docker-php-entrypoint

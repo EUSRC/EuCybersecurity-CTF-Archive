@@ -1,0 +1,192 @@
+<style>
+.scrollpic {
+    width: 100%;
+    margin:40px auto 30px auto;
+    float: left;
+}
+#myscroll {
+    display: block;
+    width: 100%;
+    position: relative;
+    height: 237px;
+    overflow: hidden;
+}
+#myscroll #myscrollbox {
+    display: block;
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1000000px;
+}
+#myscroll ul {
+    display: block;
+    float: left;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#myscroll ul li {
+    display: block;
+    float: left;
+    padding: 0;
+    width: 247px;
+}
+#myscroll ul li a {display: block;float: left;width: 237px;padding: 0;position: relative;color: #333;}
+#myscroll a .intro {
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    background-color: #000;
+    filter: alpha(opacity=70);
+    width: 237px;
+    color: #fff;
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.5;
+    text-align: center;
+}
+#myscroll a .intro h5 {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    height: 40px;
+    width: 260px;
+    line-height: 30px;
+    border-bottom: 1px solid #000000;
+    font-weight:100;
+}
+#myscroll a .intro p {
+    font-size: 13px;
+    line-height: 20px;
+    margin: 65px 70px;
+    height: 237px;
+    overflow: hidden;
+}
+#myscroll a .intro p img{
+    margin-top: 145px;
+}
+#myscroll a .intro {
+    bottom: -367px;
+}
+#myscroll a:hover .intro {
+    bottom: 0px;
+}
+#mybtns {
+    margin: 10px auto;
+    /* position: absolute; */
+    display: block;
+    /* height: 42px; */
+    width: 980px;
+}
+#mybtns a {
+    width: 42px;
+    height: 42px;
+    display: block;
+    float: right;
+    margin-right: 1px;
+    background-color: #c1c1c1;
+    margin-left:10px;
+    border-radius: 50px;
+    z-index: 200;
+}
+#mybtns a:hover {
+    background-color: #000000;
+    text-decoration: none;
+    border: 0;
+}
+#mybtns a:hover, #myscroll, #mybtns a, #myscroll a:hover .intro, #myscroll a .intro, #myscroll #myscrollbox {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+#mybtns #left {background-image: url(__TEMP__/{$style}/public/images/jt_l.png);float: left;position: absolute;/* margin-left: -50px; */margin-top: 100px;}
+#mybtns #right {background-image: url(__TEMP__/{$style}/public/images/jt_r.png);position: absolute;float: right;margin-left: 995px;margin-top: 100px;}
+
+#kinMaxShow {
+    visibility: hidden;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+#myscrollbox img{
+        margin: 0 auto;
+}
+</style>
+<div class="scrollpic" style="">
+    <div id="mybtns">
+        <a href="javascript:;" id="right"></a>
+        <a href="javascript:;" id="left"></a>
+    </div>
+    <div id="myscroll">
+        <div id="myscrollbox" style="left: -247px;">
+            <ul>
+               
+            </ul>
+        </div>
+    </div>
+</div>
+<div style="clear: both;"></div>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    $.ajax({
+        type : "post",
+        url : "{:__URL('SHOP_MAIN/goods/getRandGoodsListAjax')}",
+        data : {},
+        success : function(data){
+            if(data.length>0){
+                var html = '';
+                for(i = 0;i<data.length; i++){
+                    html += '<li>';
+                    html += '<a href="'+__URL('SHOP_MAIN/goods/goodsinfo?goodsid='+data[i]['goods_id'])+'" target="_blank">';
+                    html += '<img src="'+__IMG(data[i]['picture_detail']['pic_cover_mid'])+'" width="237" height="237">';
+                    html += '<span class="intro"><p>';      
+                    html += '<img src="__TEMP__/{$style}/public/images/jia.png" width="70" height="70"></p>';
+                    html += '</span>';
+                    html += '</a>';
+                    html += '</li>';
+                }
+                $("#myscrollbox ul").html(html);
+                var blw = $("#myscrollbox li").width();
+                //获取单个子元素所需宽度
+                var liArr = $("#myscrollbox ul").children("li");
+                //获取子元素数量
+                var mysw = $("#myscroll").width();
+                //获取子元素所在区域宽度
+                var mus = parseInt(mysw / blw);
+                //计算出需要显示的子元素的数量
+                var length = liArr.length - mus;
+                //计算子元素可移动次数（被隐藏的子元素数量）
+                var i = 0;
+                $("#right").click(function() {
+                    i++
+                    //点击i加1
+                    if (i < length) {
+                        $("#myscrollbox").css("left", -(blw * i));
+                        //子元素集合向左移动，距离为子元素的宽度乘以i。
+                    } else {
+                        i = length;
+                        $("#myscrollbox").css("left", -(blw * length));
+                        //超出可移动范围后点击不再移动。最后几个隐藏的元素显示时i数值固定位已经移走的子元素数量。
+                    }
+                });
+                $("#left").click(function() {
+                    i--
+                    //点击i减1
+                    if (i >= 0) {
+                        $("#myscrollbox").css("left", -(blw * i));
+                        //子元素集合向右移动，距离为子元素的宽度乘以i。
+                    } else {
+                        i = 0;
+                        $("#myscrollbox").css("left", 0);
+                        //超出可移动范围后点击不再移动。最前几个子元素被显示时i为0。
+                    }
+                });
+            }
+        }
+    })
+});
+</script>
